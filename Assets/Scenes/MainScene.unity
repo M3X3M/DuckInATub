@@ -418,6 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 729031961}
+  - component: {fileID: 729031962}
   m_Layer: 0
   m_Name: BubbleSpawn
   m_TagString: Untagged
@@ -440,23 +441,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &736747227 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1282409874503844020, guid: 293d552c933a8d3ddace36bcd6994c25, type: 3}
-  m_PrefabInstance: {fileID: 4633783689583447518}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &736747232
+--- !u!114 &729031962
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 736747227}
+  m_GameObject: {fileID: 729031960}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604987671bf2cf171a1270e7fb98a504, type: 3}
+  m_Script: {fileID: 11500000, guid: 744e8870fe886bd539e0caf695c9bdb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn_interval: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,17 +1055,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4745641167178097427, guid: 293d552c933a8d3ddace36bcd6994c25, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ae917ea63124df1e79b4bf6b0d1c3266, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1282409874503844020, guid: 293d552c933a8d3ddace36bcd6994c25, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 736747232}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 293d552c933a8d3ddace36bcd6994c25, type: 3}
 --- !u!1001 &7725956998469714338
 PrefabInstance:
