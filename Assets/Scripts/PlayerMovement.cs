@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform boyeTR, boyeTL, boyeBR, boyeBL;
     [SerializeField] private float rotation_speed, movement_speed;
 
+    [SerializeField] private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +38,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            animator.SetBool("IsMoving", false);
             return;
         }
+
+        animator.SetBool("IsMoving", true);
 
         float target_angle = Mathf.Atan2(target_pos.x, target_pos.z) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, target_angle, 0));
