@@ -28,5 +28,12 @@ public class BubbleCollision : MonoBehaviour
             scoreMaster.AddScore(1);
             bubble_base.Pop(true);
         }
+        else if (
+            other.gameObject.CompareTag("NoSpawn") ||
+            other.gameObject.CompareTag("Enemy")
+        )
+        {
+            bubble_base.Pop();
+        }
     }
 }

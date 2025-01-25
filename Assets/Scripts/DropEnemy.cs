@@ -17,13 +17,23 @@ public class DropEnemy : MonoBehaviour
     void Start()
     {
         _animator = GetComponentInChildren<Animator>();
-        Vector2 pos = GameObject.Find("GameMaster").GetComponent<GameInfo>().GetRandomPositions();
         _water = GameObject.FindWithTag("Water").transform;
+        Vector2 pos = GameObject.Find("GameMaster").GetComponent<GameInfo>().GetRandomPositions();
         transform.position = new Vector3(
             pos.x,
             start_height,
             pos.y
         );
+
+        while (CheckIfSpawnable() == false)
+        {
+            pos = GameObject.Find("GameMaster").GetComponent<GameInfo>().GetRandomPositions();
+            transform.position = new Vector3(
+                pos.x,
+                start_height,
+                pos.y
+            );
+        }
 
         mark.position = new Vector3(
             transform.position.x,
@@ -43,6 +53,24 @@ public class DropEnemy : MonoBehaviour
                 transform.position.z
             );
         }
+    }
+
+    private bool CheckIfSpawnable()
+    {
+        Vector3 origin = transform.position;
+        Vector3 direction = -transform.up;
+
+        float maxDistance = 15f;
+
+        if (Physics.SphereCast(origin, 2f, direction, out RaycastHit hitInfo, maxDistance))
+        {
+            if(hitInfo.collider.CompareTag("NoSpawn"))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void DeleteMark()
