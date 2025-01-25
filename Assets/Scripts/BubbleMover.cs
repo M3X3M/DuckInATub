@@ -39,6 +39,15 @@ public class ShootingStartController : MonoBehaviour
         // Moving the object
         // this assumes that the object faces left on rotation 0
         transform.position += transform.forward * Time.deltaTime * _movementSpeed;
+        if(
+            transform.position.x > _camBounds.x ||
+            transform.position.x < -_camBounds.x ||
+            transform.position.z > _camBounds.y ||
+            transform.position.z < -_camBounds.y
+        )
+        {
+            Destroy(gameObject);
+        }
     }
 
     private SpawnPosition CalcSpawnProperties()
@@ -62,7 +71,6 @@ public class ShootingStartController : MonoBehaviour
         {
             case (int)Edge.Left:
             {
-                print("left");
                 new_spawn_pos.Pos.x = -(half_cam_width + this._borderPadding);
                 new_spawn_pos.Pos.y = Random.Range(-half_cam_height, half_cam_height);
                 face_center = 90;
@@ -71,7 +79,6 @@ public class ShootingStartController : MonoBehaviour
 
             case (int)Edge.Top:
             {
-                print("top");
                 new_spawn_pos.Pos.y = half_cam_height + this._borderPadding;
                 new_spawn_pos.Pos.x = Random.Range(-half_cam_width, half_cam_width);
                 face_center = 180;
@@ -80,7 +87,6 @@ public class ShootingStartController : MonoBehaviour
 
             case (int)Edge.Right:
             {
-                print("right");
                 new_spawn_pos.Pos.x = half_cam_width + this._borderPadding;
                 new_spawn_pos.Pos.y = Random.Range(-half_cam_height, half_cam_height);
                 face_center = 270;
@@ -89,7 +95,6 @@ public class ShootingStartController : MonoBehaviour
 
             case (int)Edge.Bottom:
             {
-                print("bottom");
                 new_spawn_pos.Pos.y = -(half_cam_height + this._borderPadding);
                 new_spawn_pos.Pos.x = Random.Range(-half_cam_width, half_cam_width);
                 face_center = 0;
@@ -118,5 +123,10 @@ public class ShootingStartController : MonoBehaviour
         float width = height * cam.aspect;
 
         return new Vector2(width, height);
+    }
+
+    private void Suicide()
+    {
+
     }
 }

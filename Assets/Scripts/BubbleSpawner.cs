@@ -47,7 +47,7 @@ public class BubbleSpawner : MonoBehaviour
 
         GameObject instance = Instantiate(
             expandingBubblePrefab,
-            spawn_pos,
+            new Vector3(2, 0, 0),
             spawn_rotation
         );
     }

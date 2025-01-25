@@ -12,6 +12,7 @@ public class BubbleCollision : MonoBehaviour
     void Start()
     {
         scoreMaster = GameObject.Find("GameMaster").GetComponent<ScoreMaster>();
+        bubble_base = GetComponent<BubbleBase>();
 
         if (scoreMaster == null)
         {
@@ -22,12 +23,10 @@ public class BubbleCollision : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            return;
+            scoreMaster.AddScore(1);
+            bubble_base.Pop();
         }
-
-        scoreMaster.AddScore(1);
-        bubble_base.Pop();
     }
 }
