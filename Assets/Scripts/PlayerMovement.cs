@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip[] quackSounds;
     [SerializeField] private float quackCooldownTime = 0.5f;
     
+    private ScoreMaster _scoreMaster;
     private AudioSource _swimAudio;
     private AudioSource _quackAudio;
     private float _tQuacked = 0.0f;
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         AudioSource[] audioSources = GetComponentsInChildren<AudioSource>();
         _swimAudio = audioSources[0];
         _quackAudio = audioSources[1];
+        _scoreMaster = GameObject.Find("GameMaster").GetComponent<ScoreMaster>();
         
         _swimAudio.clip = swimSound;
         _tQuacked = Time.time;
@@ -38,6 +41,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButton("Quack"))
         {
             Quack();
+        }
+
+        if (!_scoreMaster.game_running)
+        {
+            return;
         }
         
         if (Input.GetButton("TopLeft"))
@@ -70,6 +78,14 @@ public class PlayerMovement : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, target_angle, 0));
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotation_speed * Time.deltaTime);
         transform.position += movement_speed * Time.deltaTime * transform.forward;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            _scoreMaster.ReduceLive();
+        }
     }
 
     private void ToggleAudio(bool stopPlaying = false)
