@@ -17,7 +17,7 @@ public class BubbleBase : MonoBehaviour
     public void Pop(bool with_sound = false)
     {
         GetComponent<SphereCollider>().enabled = false;
-        GetComponent<MeshRenderer>().enabled = false;
+        GetComponentInChildren<MeshRenderer>().enabled = false;
 
         if (with_sound)
         {
