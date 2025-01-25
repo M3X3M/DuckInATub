@@ -10,12 +10,24 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator animator;
     
     [Header("Sound Stuff")]
-    [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip swimSound;
+    [SerializeField] private AudioClip[] quackSounds;
+    [SerializeField] private float quackCooldownTime = 0.5f;
+    
+    private AudioSource _swimAudio;
+    private AudioSource _quackAudio;
+    private float _tQuacked = 0.0f;
+    private int _idxPrevQuack = 0;
     
     void Start()
     {
-        audioSource.clip = swimSound;
+        // get audio components and set them accordingly
+        AudioSource[] audioSources = GetComponentsInChildren<AudioSource>();
+        _swimAudio = audioSources[0];
+        _quackAudio = audioSources[1];
+        
+        _swimAudio.clip = swimSound;
+        _tQuacked = Time.time;
     }
 
     // Update is called once per frame
@@ -23,6 +35,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 target_pos;
 
+        if (Input.GetButton("Quack"))
+        {
+            Quack();
+        }
+        
         if (Input.GetButton("TopLeft"))
         {
             target_pos = boyeTL.position - transform.position;
@@ -57,13 +74,46 @@ public class PlayerMovement : MonoBehaviour
 
     private void ToggleAudio(bool stopPlaying = false)
     {
-        if (stopPlaying && audioSource.isPlaying)
+        if (stopPlaying && _swimAudio.isPlaying)
         {
-            audioSource.Stop();
+            _swimAudio.Stop();
         }
-        else if (!stopPlaying && !audioSource.isPlaying)
+        else if (!stopPlaying && !_swimAudio.isPlaying)
         {
-            audioSource.Play();
+            _swimAudio.Play();
         }
+    }
+    
+    private void Quack()
+    {
+        // check is next quack is available 
+        if (Mathf.Abs(_tQuacked - Time.time) < quackCooldownTime)
+        {
+            return;
+        }
+        
+        // randomization stuff
+        int idx_quack = Random.Range(0, quackSounds.Length);
+        if (idx_quack == _idxPrevQuack)
+        {
+            idx_quack = (idx_quack + 1) % quackSounds.Length;
+        }
+        _quackAudio.clip = quackSounds[idx_quack];
+
+        float r_volume = Random.Range(0.75f, 1.0f);
+        _quackAudio.volume = r_volume;
+        
+        float r_pitch = Random.Range(0.5f, 1.5f);
+        _quackAudio.pitch = r_pitch;
+        
+        float r_nextQuackTime = Random.Range(0.3f, 1.0f);
+        quackCooldownTime = r_nextQuackTime;
+        
+        // ------------------------
+        _quackAudio.Play();
+        
+        // set tracking stuff
+        _idxPrevQuack = idx_quack;
+        _tQuacked = Time.time;
     }
 }
