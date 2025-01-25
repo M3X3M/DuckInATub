@@ -66,11 +66,12 @@ public class ScoreMaster : MonoBehaviour
 
     public void EndComplete()
     {
-
+        menu_ui.SetActive(true);
     }
 
     public void StartGame()
     {
+        print("test");
         playerMovement.Reset();
         menu_ui.SetActive(false);
         fieldAnim.SetTrigger("ascend");
@@ -78,6 +79,10 @@ public class ScoreMaster : MonoBehaviour
 
     public void StartComplete()
     {
-
+        bubbleSpawner.produce = true;
+        enemySpawner.produce = true;
+        virtCam.Follow = player;
+        ingame_ui.SetActive(true);
+        game_running = true;
     }
 }

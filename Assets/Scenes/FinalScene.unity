@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.1802835, g: 0.22571386, b: 0.30692303, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028373, g: 0.22571367, b: 0.30692142, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -495,16 +495,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385932888}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
+  m_HorizontalAxis: Debug Horizontal
+  m_VerticalAxis: Debug Vertical
   m_SubmitButton: Submit
-  m_CancelButton: Cancel
+  m_CancelButton: Quack
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
@@ -675,6 +675,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2e5b17a47a4a2f4894cd2d884dca771, type: 3}
+--- !u!1 &401624120 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2216370423102520033, guid: a7321d8c19b5e4244b8515802af211bd, type: 3}
+  m_PrefabInstance: {fileID: 4105256220866978946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &456193463
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,6 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 641035546}
   - component: {fileID: 641035547}
+  - component: {fileID: 641035548}
   m_Layer: 0
   m_Name: PlayingField
   m_TagString: Untagged
@@ -771,6 +777,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &641035548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641035545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdc2fb1c7ebc4ecc8c817f68b1ecf2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreMaster: {fileID: 1385630006}
 --- !u!1 &642402524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,6 +1148,11 @@ Transform:
   - {fileID: 1838044199}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 172.635, z: 0}
+--- !u!1 &1107872630 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6406529743589514156, guid: a7321d8c19b5e4244b8515802af211bd, type: 3}
+  m_PrefabInstance: {fileID: 4105256220866978946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1301581063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1242,6 +1266,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03f5f2cc21dceadcf8cad465e253d921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1388037324 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8955741032474029038, guid: a7321d8c19b5e4244b8515802af211bd, type: 3}
+  m_PrefabInstance: {fileID: 4105256220866978946}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1397398167
@@ -2229,6 +2264,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8263278558724322093}
     - target: {fileID: 7321184467155853252, guid: 921b0be20083aaf7db0f59c9a55df419, type: 3}
+      propertyPath: menu_ui
+      value: 
+      objectReference: {fileID: 401624120}
+    - target: {fileID: 7321184467155853252, guid: 921b0be20083aaf7db0f59c9a55df419, type: 3}
       propertyPath: virtCam
       value: 
       objectReference: {fileID: 1402664676}
@@ -2240,6 +2279,10 @@ PrefabInstance:
       propertyPath: gameField
       value: 
       objectReference: {fileID: 641035546}
+    - target: {fileID: 7321184467155853252, guid: 921b0be20083aaf7db0f59c9a55df419, type: 3}
+      propertyPath: ingame_ui
+      value: 
+      objectReference: {fileID: 1107872630}
     - target: {fileID: 7321184467155853252, guid: 921b0be20083aaf7db0f59c9a55df419, type: 3}
       propertyPath: score_label
       value: 
@@ -2260,6 +2303,14 @@ PrefabInstance:
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 8263278558724322096}
+    - target: {fileID: 7321184467155853252, guid: 921b0be20083aaf7db0f59c9a55df419, type: 3}
+      propertyPath: game_score_label
+      value: 
+      objectReference: {fileID: 1311689818}
+    - target: {fileID: 7321184467155853252, guid: 921b0be20083aaf7db0f59c9a55df419, type: 3}
+      propertyPath: menu_score_label
+      value: 
+      objectReference: {fileID: 1388037324}
     - target: {fileID: 7451484584867122819, guid: 921b0be20083aaf7db0f59c9a55df419, type: 3}
       propertyPath: vertical_offset
       value: 4

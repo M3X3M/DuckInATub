@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class FieldController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private ScoreMaster scoreMaster;
+
+    public void AscendDone()
     {
-        
+        scoreMaster.StartComplete();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DescendDone()
     {
-        
+        scoreMaster.EndComplete();
     }
 }
