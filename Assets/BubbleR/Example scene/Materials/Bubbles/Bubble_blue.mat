@@ -29,7 +29,7 @@ Material:
     - _BounceFrequency: 0.58
     - _ColorShiftMode: 0
     - _ColorShifting: 1
-    - _Glossiness: 0.61
+    - _Glossiness: 0.67
     - _Metal: 0.04
     - _Metallic: 1
     - _SpatialNoise: 0
