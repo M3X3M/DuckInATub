@@ -7,6 +7,7 @@ TagManager:
   - Bubble
   - DeathWall
   - Enemy
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -14,8 +15,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Enemy
+  - Floor
   - 
   - 
   - 

@@ -22,6 +22,8 @@ public class BubbleBase : MonoBehaviour
         if (with_sound)
         {
             int audio_pick = Random.Range(0, pop_sounds.Count - 1);
+            audioSource.volume = Random.Range(0.5f, 1.0f);
+            audioSource.pitch = Mathf.Lerp(2.0f, 0.2f, transform.localScale.x);
             StartCoroutine(PlayClipAndExecute(pop_sounds[audio_pick]));
         }
         else
