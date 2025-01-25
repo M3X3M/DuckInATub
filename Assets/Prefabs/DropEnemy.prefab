@@ -86,6 +86,7 @@ MonoBehaviour:
   start_height: 10
   mark: {fileID: 2982911001903695031}
   dropSound: {fileID: 8300000, guid: c4aa67ce4d1194535a99d8077ecde3e1, type: 3}
+  hitSound: {fileID: 8300000, guid: a28e9e0903c92446aa73d3e5cb2b4641, type: 3}
 --- !u!65 &4668468509746028347
 BoxCollider:
   m_ObjectHideFlags: 0

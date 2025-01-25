@@ -9,7 +9,7 @@ public class BubbleSpawner : MonoBehaviour
     [SerializeField] private float spawn_y;
     [SerializeField] private GameObject expandingBubblePrefab, movingBubblePrefab;
     private GameInfo gameInfo;
-    public bool produce = true;
+    public bool produce = false;
 
 
     void Start()

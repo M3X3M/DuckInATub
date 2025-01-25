@@ -57,7 +57,7 @@ public class ScoreMaster : MonoBehaviour
     public void EndGame()
     {
         game_running = false;
-        bubbleSpawner.produce = false;
+        // bubbleSpawner.produce = false;
         enemySpawner.produce = false;
         virtCam.Follow = player_spawn;
         ingame_ui.SetActive(false);
@@ -67,11 +67,11 @@ public class ScoreMaster : MonoBehaviour
     public void EndComplete()
     {
         menu_ui.SetActive(true);
+        menu_score_label.text = $"Last score: {score}";
     }
 
     public void StartGame()
     {
-        print("test");
         playerMovement.Reset();
         menu_ui.SetActive(false);
         fieldAnim.SetTrigger("ascend");

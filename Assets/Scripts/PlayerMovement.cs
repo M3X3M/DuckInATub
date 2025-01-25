@@ -13,11 +13,13 @@ public class PlayerMovement : MonoBehaviour
     [Header("Sound Stuff")]
     [SerializeField] private AudioClip swimSound;
     [SerializeField] private AudioClip[] quackSounds;
+    [SerializeField] private AudioClip[] hitSounds;
     [SerializeField] private float quackCooldownTime = 0.5f;
     
     private ScoreMaster _scoreMaster;
     private AudioSource _swimAudio;
     private AudioSource _quackAudio;
+    private AudioSource _hitAudio;
     private float _tQuacked = 0.0f;
     private int _idxPrevQuack = 0;
     private Vector3 _start_pos;
@@ -29,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         AudioSource[] audioSources = GetComponentsInChildren<AudioSource>();
         _swimAudio = audioSources[0];
         _quackAudio = audioSources[1];
+        _hitAudio = audioSources[2];
         _scoreMaster = GameObject.Find("GameMaster").GetComponent<ScoreMaster>();
         _start_pos = transform.position;
         _start_rot = transform.rotation;
@@ -89,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             _scoreMaster.ReduceLive();
+            PlayHitAudio();
         }
     }
 
@@ -141,5 +145,12 @@ public class PlayerMovement : MonoBehaviour
         // set tracking stuff
         _idxPrevQuack = idx_quack;
         _tQuacked = Time.time;
+    }
+
+    private void PlayHitAudio()
+    {
+        int idx_hit = Random.Range(0, hitSounds.Length);
+        _hitAudio.clip = hitSounds[idx_hit];
+        _hitAudio.Play();
     }
 }
