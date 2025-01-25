@@ -38,6 +38,9 @@ public class ScoreMaster : MonoBehaviour
 
     public void AddScore(float new_score)
     {
+        if(!game_running)
+            return;
+
         score += new_score;
         UpdateLabel();
     }

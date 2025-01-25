@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 744e8870fe886bd539e0caf695c9bdb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expanding_spawn_interval: 0.05
+  expanding_spawn_interval: 0.02
   moving_spawn_interval: 0
   spawn_y: 0.1
   expandingBubblePrefab: {fileID: 5807096251306343077, guid: c8a8f85a61ae8c377b616d3a926e9c03, type: 3}

@@ -5046,6 +5046,7 @@ MonoBehaviour:
   boyeBL: {fileID: 0}
   rotation_speed: 1.5
   movement_speed: 4
+  model: {fileID: 2466134653773416333}
   animator: {fileID: 3207498577629317821}
   swimSound: {fileID: 8300000, guid: 91520aafdcf404446bf7dec6ad1f33c1, type: 3}
   quackSounds:

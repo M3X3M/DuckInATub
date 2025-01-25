@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform boyeTR, boyeTL, boyeBR, boyeBL;
     [SerializeField] private float rotation_speed, movement_speed;
 
+    [SerializeField] private GameObject model;
     [SerializeField] private Animator animator;
     
     [Header("Sound Stuff")]
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private int _idxPrevQuack = 0;
     private Vector3 _start_pos;
     private Quaternion _start_rot;
+    private bool _hittable = true;
     
     void Start()
     {
@@ -89,10 +91,13 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (_hittable && other.gameObject.CompareTag("Enemy"))
         {
+            _hittable = false;
+            Destroy(other.gameObject);
             _scoreMaster.ReduceLive();
             PlayHitAudio();
+            StartCoroutine(PlayerBlink());
         }
     }
 
@@ -152,5 +157,18 @@ public class PlayerMovement : MonoBehaviour
         int idx_hit = Random.Range(0, hitSounds.Length);
         _hitAudio.clip = hitSounds[idx_hit];
         _hitAudio.Play();
+    }
+
+    IEnumerator PlayerBlink()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            model.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+            model.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        _hittable = true;
     }
 }

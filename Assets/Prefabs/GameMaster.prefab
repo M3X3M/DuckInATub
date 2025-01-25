@@ -45,7 +45,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f5f2cc21dceadcf8cad465e253d921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score_label: {fileID: 0}
+  gameField: {fileID: 0}
+  virtCam: {fileID: 0}
+  bubbleSpawner: {fileID: 0}
+  enemySpawner: {fileID: 0}
+  player: {fileID: 0}
+  player_spawn: {fileID: 0}
+  playerMovement: {fileID: 0}
+  fieldAnim: {fileID: 0}
+  game_score_label: {fileID: 0}
+  menu_score_label: {fileID: 0}
+  menu_ui: {fileID: 0}
+  ingame_ui: {fileID: 0}
+  game_running: 0
 --- !u!114 &7451484584867122819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,4 +70,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4200d612084c5efe6869627ee60af4dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  field_size: {x: 10, y: 10}
+  field_size: {x: 20, y: 15}
+  vertical_offset: 0
