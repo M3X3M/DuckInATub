@@ -2151,6 +2151,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 740c26e69f6825d48a9352862e4e297d, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 740c26e69f6825d48a9352862e4e297d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0e1e87d1c63f7dc488f12abe63ac676b, type: 2}
@@ -2617,6 +2621,10 @@ PrefabInstance:
     - target: {fileID: 1437737902651970438, guid: 2f49707c95636d342b3baa2393fdd5a2, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901261517019566398, guid: 2f49707c95636d342b3baa2393fdd5a2, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8472414757567893186, guid: 2f49707c95636d342b3baa2393fdd5a2, type: 3}
       propertyPath: rotationSpeed
