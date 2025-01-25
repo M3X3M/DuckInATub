@@ -9,6 +9,7 @@ public class ScoreMaster : MonoBehaviour
     [SerializeField] private TMP_Text score_label;
     private string score_fstring = "{0}";
     private float score = 0.0f;
+    private int lives = 3;
 
 
     // Start is called before the first frame update
