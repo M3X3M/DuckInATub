@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 8746509330297293544}
   - component: {fileID: 570573786947736164}
   - component: {fileID: 7350562181426639545}
+  - component: {fileID: 5382455887621612991}
   m_Layer: 5
   m_Name: InGameUI
   m_TagString: Untagged
@@ -464,3 +465,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5382455887621612991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717183740627960288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99153cf32cd1e61658123b1e5e080da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duck1: {fileID: 5633817928881363882}
+  duck2: {fileID: 937107539971574929}
+  duck3: {fileID: 4271875129261022284}
+  in_game_score: {fileID: 2172347674312395399}
