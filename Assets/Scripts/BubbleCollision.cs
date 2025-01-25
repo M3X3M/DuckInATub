@@ -26,7 +26,7 @@ public class BubbleCollision : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             scoreMaster.AddScore(1);
-            bubble_base.Pop();
+            bubble_base.Pop(true);
         }
     }
 }
