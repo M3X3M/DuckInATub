@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource _quackAudio;
     private float _tQuacked = 0.0f;
     private int _idxPrevQuack = 0;
+    private Vector3 _start_pos;
+    private Quaternion _start_rot;
     
     void Start()
     {
@@ -28,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
         _swimAudio = audioSources[0];
         _quackAudio = audioSources[1];
         _scoreMaster = GameObject.Find("GameMaster").GetComponent<ScoreMaster>();
+        _start_pos = transform.position;
+        _start_rot = transform.rotation;
         
         _swimAudio.clip = swimSound;
         _tQuacked = Time.time;
@@ -99,7 +103,13 @@ public class PlayerMovement : MonoBehaviour
             _swimAudio.Play();
         }
     }
-    
+
+    public void Reset()
+    {
+        transform.position = _start_pos;
+        transform.rotation = _start_rot;
+    }
+
     private void Quack()
     {
         // check is next quack is available 

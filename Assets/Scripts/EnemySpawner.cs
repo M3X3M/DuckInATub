@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject dropEnemyPrefab;
     [SerializeField] private float dropEnemyInterval = 5f;
+    public bool produce = false;
 
     void Start()
     {
@@ -19,7 +20,8 @@ public class EnemySpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(dropEnemyInterval);
 
-            SpawnDropEnemy();
+            if(produce)
+                SpawnDropEnemy();
         }
     }
 

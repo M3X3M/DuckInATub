@@ -11,12 +11,16 @@ public class ScoreMaster : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera virtCam;
     [SerializeField] private BubbleSpawner bubbleSpawner;
     [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private Transform player, player_spawn;
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private TMP_Text score_label;
+    [SerializeField] private Animator fieldAnim;
+    [SerializeField] private TMP_Text game_score_label, menu_score_label;
+    [SerializeField] private GameObject menu_ui, ingame_ui;
+
     private string score_fstring = "{0}";
     private float score = 0.0f;
     private int lives = 3;
-    public bool game_running = true;
+    public bool game_running = false;
     private UIController uiController;
 
 
@@ -29,7 +33,7 @@ public class ScoreMaster : MonoBehaviour
 
     private void UpdateLabel()
     {
-        score_label.text = string.Format(score_fstring, score);
+        game_score_label.text = string.Format(score_fstring, score);
     }
 
     public void AddScore(float new_score)
@@ -40,9 +44,10 @@ public class ScoreMaster : MonoBehaviour
 
     public void ReduceLive()
     {
-        if(lives < 1)
+        if(lives <= 1)
         {
-            //TODO end game
+            print("Ending");
+            EndGame();
         }
 
         --lives;
@@ -51,10 +56,27 @@ public class ScoreMaster : MonoBehaviour
 
     public void EndGame()
     {
+        game_running = false;
+        bubbleSpawner.produce = false;
+        enemySpawner.produce = false;
+        virtCam.Follow = player_spawn;
+        ingame_ui.SetActive(false);
+        fieldAnim.SetTrigger("descend");
+    }
+
+    public void EndComplete()
+    {
 
     }
 
     public void StartGame()
+    {
+        playerMovement.Reset();
+        menu_ui.SetActive(false);
+        fieldAnim.SetTrigger("ascend");
+    }
+
+    public void StartComplete()
     {
 
     }
