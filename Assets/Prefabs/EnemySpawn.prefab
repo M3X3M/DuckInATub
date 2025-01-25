@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropEnemyPrefab: {fileID: 7448099686263444713, guid: 4042253c98c1802dc88ca869f5365569, type: 3}
   dropEnemyInterval: 5
+  produce: 0
