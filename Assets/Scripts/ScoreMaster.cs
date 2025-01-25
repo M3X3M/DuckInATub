@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreMaster : MonoBehaviour
 {
@@ -16,9 +17,11 @@ public class ScoreMaster : MonoBehaviour
     [SerializeField] private Animator fieldAnim;
     [SerializeField] private TMP_Text game_score_label, menu_score_label;
     [SerializeField] private GameObject menu_ui, ingame_ui;
+    [SerializeField] private float discharge_rate = 0.2f;
 
     private string score_fstring = "{0}";
     private float score = 0.0f;
+    public int discharge = 50;
     private int lives = 3;
     public bool game_running = false;
     private UIController uiController;
@@ -29,6 +32,7 @@ public class ScoreMaster : MonoBehaviour
     {
         UpdateLabel();
         uiController = GameObject.Find("InGameUI").GetComponent<UIController>();
+        StartCoroutine(Discharger());
     }
 
     private void UpdateLabel()
@@ -36,12 +40,13 @@ public class ScoreMaster : MonoBehaviour
         game_score_label.text = string.Format(score_fstring, score);
     }
 
-    public void AddScore(float new_score)
+    public void AddScore(int new_score)
     {
         if(!game_running)
             return;
 
         score += new_score;
+        discharge += new_score;
         UpdateLabel();
     }
 
@@ -76,6 +81,7 @@ public class ScoreMaster : MonoBehaviour
     public void StartGame()
     {
         playerMovement.Reset();
+        discharge = 50;
         lives = 3;
         uiController.UpdateLives(lives);
         menu_ui.SetActive(false);
@@ -89,5 +95,21 @@ public class ScoreMaster : MonoBehaviour
         virtCam.Follow = player;
         ingame_ui.SetActive(true);
         game_running = true;
+    }
+
+    IEnumerator Discharger()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(discharge_rate);
+
+            if(game_running)
+                discharge -= 1;
+
+            if (discharge <= 0 && game_running)
+            {
+                EndGame();
+            }
+        }
     }
 }

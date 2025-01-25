@@ -2491,6 +2491,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1385630006}
+    - target: {fileID: 3772557881428886857, guid: a7321d8c19b5e4244b8515802af211bd, type: 3}
+      propertyPath: scoreMaster
+      value: 
+      objectReference: {fileID: 1385630006}
     - target: {fileID: 7717183740627960288, guid: a7321d8c19b5e4244b8515802af211bd, type: 3}
       propertyPath: m_Name
       value: InGameUI
