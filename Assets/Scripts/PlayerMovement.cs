@@ -8,11 +8,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotation_speed, movement_speed;
 
     [SerializeField] private Animator animator;
-
-    // Start is called before the first frame update
+    
+    [Header("Sound Stuff")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip swimSound;
+    
     void Start()
     {
-        
+        audioSource.clip = swimSound;
     }
 
     // Update is called once per frame
@@ -39,14 +42,28 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("IsMoving", false);
+            ToggleAudio(true);
             return;
         }
 
         animator.SetBool("IsMoving", true);
+        ToggleAudio();
 
         float target_angle = Mathf.Atan2(target_pos.x, target_pos.z) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, target_angle, 0));
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotation_speed * Time.deltaTime);
         transform.position += movement_speed * Time.deltaTime * transform.forward;
+    }
+
+    private void ToggleAudio(bool stopPlaying = false)
+    {
+        if (stopPlaying && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+        else if (!stopPlaying && !audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
     }
 }
