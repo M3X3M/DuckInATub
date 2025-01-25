@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BubbleBase))]
 public class BubbleCollision : MonoBehaviour
 {
     private ScoreMaster scoreMaster;
+    private BubbleBase bubble_base;
 
 
     void Start()
@@ -26,6 +28,6 @@ public class BubbleCollision : MonoBehaviour
         }
 
         scoreMaster.AddScore(1);
-        Destroy(gameObject);
+        bubble_base.Pop();
     }
 }

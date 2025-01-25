@@ -1,27 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BubbleSpawner : MonoBehaviour
 {
-    [SerializeField] private float spawn_interval;
+    [SerializeField] private float expanding_spawn_interval, moving_spawn_interval;
     [SerializeField] private Vector2 LimitBottomLeft, LimitTopRight;
     [SerializeField] private float spawn_y;
-    [SerializeField] private GameObject expandingBubblePrefab;
+    [SerializeField] private GameObject expandingBubblePrefab, movingBubblePrefab;
 
     void Start()
     {
-        return;
-        StartCoroutine(SpawnTick());
+        StartCoroutine(ExpandingSpawnTick());
+        StartCoroutine(MovingSpawnTick());
     }
 
-    IEnumerator SpawnTick()
+    IEnumerator ExpandingSpawnTick()
     {
         while (true)
         {
-            yield return new WaitForSeconds(spawn_interval);
+            yield return new WaitForSeconds(expanding_spawn_interval);
 
             SpawnExpandingBubble();
+        }
+    }
+
+    IEnumerator MovingSpawnTick()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(moving_spawn_interval);
+
+            SpawnMovingBubble();
         }
     }
 
@@ -38,6 +49,13 @@ public class BubbleSpawner : MonoBehaviour
             expandingBubblePrefab,
             spawn_pos,
             spawn_rotation
+        );
+    }
+
+    private void SpawnMovingBubble()
+    {
+        GameObject instance = Instantiate(
+            movingBubblePrefab
         );
     }
 }
