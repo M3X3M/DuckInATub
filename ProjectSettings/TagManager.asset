@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bubble
   - DeathWall
+  - Enemy
   layers:
   - Default
   - TransparentFX

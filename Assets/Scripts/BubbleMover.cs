@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ShootingStartController : MonoBehaviour
+public class BubbleMover : MonoBehaviour
 {
     [Header("Properties")]
     [SerializeField] private float _movementSpeed = 3f;
@@ -9,6 +9,7 @@ public class ShootingStartController : MonoBehaviour
     [SerializeField] private int angle_range_half = 45;
 
     private Vector2 _camBounds;
+    private bool in_motion = true;
     private enum Edge
     {
         Left,
@@ -27,7 +28,7 @@ public class ShootingStartController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _camBounds = GetCameraSizes();
+        _camBounds = GameObject.Find("GameMaster").GetComponent<GameInfo>().GetCameraSizes();
         SpawnPosition props = CalcSpawnProperties();
         transform.position = new Vector3(props.Pos.x, 0f, props.Pos.y);
         transform.rotation = props.Rot;
@@ -38,7 +39,11 @@ public class ShootingStartController : MonoBehaviour
     {
         // Moving the object
         // this assumes that the object faces left on rotation 0
-        transform.position += transform.forward * Time.deltaTime * _movementSpeed;
+        if(in_motion)
+        {
+            transform.position += _movementSpeed * Time.deltaTime * transform.forward;
+        }
+
         if(
             transform.position.x > _camBounds.x ||
             transform.position.x < -_camBounds.x ||
@@ -116,17 +121,12 @@ public class ShootingStartController : MonoBehaviour
         return new_spawn_pos;
     }
 
-    private Vector2 GetCameraSizes()
+
+    void OnTriggerEnter(Collider other)
     {
-        Camera cam = Camera.main;
-        float height = 2f * cam.orthographicSize;
-        float width = height * cam.aspect;
-
-        return new Vector2(width, height);
-    }
-
-    private void Suicide()
-    {
-
+        if (other.gameObject.CompareTag("Bubble"))
+        {
+            in_motion = false;
+        }
     }
 }

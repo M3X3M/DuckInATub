@@ -47,9 +47,10 @@ public class BubbleSpawner : MonoBehaviour
 
         GameObject instance = Instantiate(
             expandingBubblePrefab,
-            new Vector3(2, 0, 0),
+            spawn_pos,
             spawn_rotation
         );
+        instance.transform.parent = transform;
     }
 
     private void SpawnMovingBubble()
@@ -57,5 +58,6 @@ public class BubbleSpawner : MonoBehaviour
         GameObject instance = Instantiate(
             movingBubblePrefab
         );
+        instance.transform.parent = transform;
     }
 }
