@@ -16,7 +16,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3015
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -83,16 +83,16 @@ Material:
     m_Floats:
     - _A_SHORT_HIKE_MODE: 0
     - _BUILTIN_QueueControl: 0
-    - _BUILTIN_QueueOffset: 0
+    - _BUILTIN_QueueOffset: 15
     - _BumpScale: 1
     - _CaveDistortion: 0
     - _Cutoff: 0.5
     - _DepthFadeDistance: 10
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FloatSpeed: 3.2
-    - _FoamDensity: 9.08
-    - _FoamSpeed: 0.21
+    - _FloatSpeed: -0.99
+    - _FoamDensity: 6.51
+    - _FoamSpeed: 1.36
     - _FoamThickness: 3.68
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -140,11 +140,11 @@ Material:
     - _CaveOffset: {r: 0, g: 0, b: 0, a: 0}
     - _CaveScale: {r: 0, g: 0, b: 0, a: 0}
     - _CaveSecondaryColor: {r: 0.0005352272, g: 0, b: 0.2830189, a: 0}
-    - _Color: {r: 0.045176145, g: 0.4546815, b: 0.8867924, a: 1}
+    - _Color: {r: 0.07351366, g: 0.4005428, b: 0.6603774, a: 1}
     - _DeepColor: {r: 0.03993591, g: 0.04130278, b: 0.2981131, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlowDirection: {r: 0.1, g: 1, b: 0, a: 0}
-    - _FoamColor: {r: 0.821199, g: 2.071293, b: 2.670157, a: 0}
+    - _FoamColor: {r: 0.4089763, g: 1.331667, b: 1.7622561, a: 0}
     - _FoamUVsOffset: {r: 1, g: 1, b: 0, a: 0}
     - _HorizonColor: {r: 1.833962, g: 0.9239017, b: 1.346016, a: 0}
     - _IntersectionFoamColor: {r: 0, g: 0.593867, b: 2.491031, a: 0.6862745}
