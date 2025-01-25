@@ -6,6 +6,7 @@ using UnityEngine;
 public class BubbleBase : MonoBehaviour
 {
     [SerializeField] private List<AudioClip> pop_sounds;
+    [SerializeField] private ParticleSystem pop_particles;
 
     private AudioSource audioSource;
 
@@ -18,6 +19,8 @@ public class BubbleBase : MonoBehaviour
     {
         GetComponent<SphereCollider>().enabled = false;
         GetComponentInChildren<MeshRenderer>().enabled = false;
+
+        pop_particles.Play();
 
         if (with_sound)
         {
