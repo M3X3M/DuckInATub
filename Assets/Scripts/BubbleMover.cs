@@ -6,6 +6,7 @@ public class ShootingStartController : MonoBehaviour
     [Header("Properties")]
     [SerializeField] private float _movementSpeed = 3f;
     [SerializeField] private float _borderPadding = 1f;
+    [SerializeField] private int angle_range_half = 45;
 
     private Vector2 _camBounds;
     private enum Edge
@@ -52,7 +53,7 @@ public class ShootingStartController : MonoBehaviour
         float half_cam_height = this._camBounds.y / 2f;
 
         // new rotation that will be set
-        int new_rotation = 0;
+        int face_center;
 
         // The object will sometimes not go on screen because it could have
         // exactly 90 degress for example but we keep it like that to have another
@@ -64,7 +65,7 @@ public class ShootingStartController : MonoBehaviour
                 print("left");
                 new_spawn_pos.Pos.x = -(half_cam_width + this._borderPadding);
                 new_spawn_pos.Pos.y = Random.Range(-half_cam_height, half_cam_height);
-                new_rotation = Random.Range(90, 270);
+                face_center = 90;
                 break;
             }
 
@@ -73,7 +74,7 @@ public class ShootingStartController : MonoBehaviour
                 print("top");
                 new_spawn_pos.Pos.y = half_cam_height + this._borderPadding;
                 new_spawn_pos.Pos.x = Random.Range(-half_cam_width, half_cam_width);
-                new_rotation = Random.Range(-180, 0);
+                face_center = 180;
                 break;
             }
 
@@ -82,7 +83,7 @@ public class ShootingStartController : MonoBehaviour
                 print("right");
                 new_spawn_pos.Pos.x = half_cam_width + this._borderPadding;
                 new_spawn_pos.Pos.y = Random.Range(-half_cam_height, half_cam_height);
-                new_rotation = Random.Range(-90, 90);
+                face_center = 270;
                 break;
             }
 
@@ -91,7 +92,7 @@ public class ShootingStartController : MonoBehaviour
                 print("bottom");
                 new_spawn_pos.Pos.y = -(half_cam_height + this._borderPadding);
                 new_spawn_pos.Pos.x = Random.Range(-half_cam_width, half_cam_width);
-                new_rotation = Random.Range(0, 180);
+                face_center = 0;
                 break;
             }
 
@@ -100,11 +101,12 @@ public class ShootingStartController : MonoBehaviour
                 // should not be possible, moving the object far away
                 new_spawn_pos.Pos.x = this._camBounds.x;
                 new_spawn_pos.Pos.y = this._camBounds.y;
+                face_center = 0;
                 break;
             }
         }
 
-        new_spawn_pos.Rot = Quaternion.Euler(new Vector3(0, new_rotation, 0));
+        new_spawn_pos.Rot = Quaternion.Euler(new Vector3(0, Random.Range(face_center-angle_range_half, face_center+angle_range_half), 0));
 
         return new_spawn_pos;
     }
