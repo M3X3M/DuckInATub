@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class GameInfo : MonoBehaviour
 {
-    private Vector2 _cam_sizes;
+    [SerializeField] private Vector2 field_size;
+    [SerializeField] private float vertical_offset;
 
-    // Start is called before the first frame update
-    void Start()
+
+    public Vector2 GetFieldSize()
     {
-        CalculateCameraSizes();
+        return field_size;
     }
 
-    private void CalculateCameraSizes()
+    public float GetVerticalOffset()
     {
-        Camera cam = Camera.main;
-        float height = 2f * cam.orthographicSize;
-        float width = height * cam.aspect;
-
-        _cam_sizes = new Vector2(width, height);
+        return vertical_offset;
     }
 
-    public Vector2 GetCameraSizes()
+    public Vector2 GetRandomPositions()
     {
-        return _cam_sizes;
+        return new Vector2(
+            Random.Range(-field_size.x, field_size.x),
+            Random.Range(-field_size.y + vertical_offset , field_size.y + vertical_offset)
+        );
     }
 }

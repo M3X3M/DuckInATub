@@ -10,7 +10,6 @@ public class DropEnemy : MonoBehaviour
     [SerializeField] private Transform mark;
 
     private Transform _water;
-    private Vector2 _camBounds;
     private Animator _animator;
     private bool update_mark = false;
 
@@ -18,12 +17,12 @@ public class DropEnemy : MonoBehaviour
     void Start()
     {
         _animator = GetComponentInChildren<Animator>();
-        _camBounds = GameObject.Find("GameMaster").GetComponent<GameInfo>().GetCameraSizes();
+        Vector2 pos = GameObject.Find("GameMaster").GetComponent<GameInfo>().GetRandomPositions();
         _water = GameObject.FindWithTag("Water").transform;
         transform.position = new Vector3(
-            Random.Range(-_camBounds.x, _camBounds.x),
+            pos.x,
             start_height,
-            Random.Range(-_camBounds.y, _camBounds.y)
+            pos.y
         );
 
         mark.position = new Vector3(

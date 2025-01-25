@@ -45,9 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expanding_spawn_interval: 0.2
-  moving_spawn_interval: 2
-  LimitBottomLeft: {x: -4.5, y: -4.5}
-  LimitTopRight: {x: 4.5, y: 4.5}
+  moving_spawn_interval: 0
   spawn_y: 0.1
   expandingBubblePrefab: {fileID: 5807096251306343077, guid: c8a8f85a61ae8c377b616d3a926e9c03, type: 3}
   movingBubblePrefab: {fileID: 7609736713228958940, guid: 696ebb719078c0414a92d32aa2c3145f, type: 3}

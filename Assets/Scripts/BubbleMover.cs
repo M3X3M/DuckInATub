@@ -28,7 +28,7 @@ public class BubbleMover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _camBounds = GameObject.Find("GameMaster").GetComponent<GameInfo>().GetCameraSizes();
+        _camBounds = GameObject.Find("GameMaster").GetComponent<GameInfo>().GetFieldSize();
         SpawnPosition props = CalcSpawnProperties();
         transform.position = new Vector3(props.Pos.x, 0f, props.Pos.y);
         transform.rotation = props.Rot;
