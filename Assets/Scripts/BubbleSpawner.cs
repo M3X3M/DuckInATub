@@ -9,6 +9,7 @@ public class BubbleSpawner : MonoBehaviour
     [SerializeField] private float spawn_y;
     [SerializeField] private GameObject expandingBubblePrefab, movingBubblePrefab;
     private GameInfo gameInfo;
+    public bool produce = true;
 
 
     void Start()
@@ -26,7 +27,8 @@ public class BubbleSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(expanding_spawn_interval);
 
-            SpawnExpandingBubble();
+            if(produce)
+                SpawnExpandingBubble();
         }
     }
 
@@ -36,7 +38,8 @@ public class BubbleSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(moving_spawn_interval);
 
-            SpawnMovingBubble();
+            if(produce)
+                SpawnMovingBubble();
         }
     }
 
