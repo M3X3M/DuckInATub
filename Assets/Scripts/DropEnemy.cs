@@ -8,6 +8,10 @@ public class DropEnemy : MonoBehaviour
     [SerializeField] private float wait_time = 4f;
     [SerializeField] private float start_height = 10f;
     [SerializeField] private Transform mark;
+    
+    [Header("Sound")]
+    [SerializeField] private AudioClip dropSound;
+    private AudioSource _audioSource;
 
     private Transform _water;
     private Animator _animator;
@@ -16,6 +20,9 @@ public class DropEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = dropSound;
+        
         _animator = GetComponentInChildren<Animator>();
         _water = GameObject.FindWithTag("Water").transform;
         Vector2 pos = GameObject.Find("GameMaster").GetComponent<GameInfo>().GetRandomPositions();
@@ -91,6 +98,8 @@ public class DropEnemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Water"))
         {
+            _audioSource.Play();
+            
             GetComponent<Collider>().enabled = false;
             DeleteMark();
             GetComponentInChildren<Rigidbody>().isKinematic = true;
