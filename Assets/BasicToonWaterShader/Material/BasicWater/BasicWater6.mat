@@ -155,7 +155,7 @@ Material:
     - _TransparencySpeed: 1
     - _TransparencyStrength: 0.75
     - _UVSec: 0
-    - _WaveAmount: 1
+    - _WaveAmount: 3
     - _WaveAmplitude: 0.1
     - _WaveDistance: 1
     - _WaveDistortionAmount: 0.1
