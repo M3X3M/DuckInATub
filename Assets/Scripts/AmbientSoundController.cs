@@ -8,9 +8,12 @@ public class AmbientSoundController : MonoBehaviour
     private AudioSource _audioSourceAmbient;
     private AudioSource _audioSourceSoundTrack;
 
+    [FormerlySerializedAs("ambientSounds")]
     [FormerlySerializedAs("_ambientSounds")]
     [Header("Ambient Sounds")]
-    [SerializeField] private AudioClip[] ambientSounds;
+    [SerializeField] private AudioClip[] ambientRiver;
+    [SerializeField] private AudioClip[] ambientSea;
+    [SerializeField] private bool switchToRiverAmbience = false;
     
     [FormerlySerializedAs("_soundTracks")]
     [Header("Sound Tracks")]
@@ -21,14 +24,21 @@ public class AmbientSoundController : MonoBehaviour
         AudioSource[] audioSources = GetComponentsInChildren<AudioSource>();
         _audioSourceAmbient = audioSources[0];
         _audioSourceSoundTrack = audioSources[1];
-        
-        int idx_ambient_sound = Random.Range(0, ambientSounds.Length);
-        int idx_sound_track = Random.Range(0, soundTracks.Length);
-        
-        _audioSourceAmbient.clip = ambientSounds[idx_ambient_sound];
-        _audioSourceSoundTrack.clip = soundTracks[idx_sound_track];
-        
+
+        if (switchToRiverAmbience)
+        {
+            int idx_ambient_sound = Random.Range(0, ambientRiver.Length);
+            _audioSourceAmbient.clip = ambientRiver[idx_ambient_sound];
+        }
+        else
+        {
+            int idx_ambient_sound = Random.Range(0, ambientSea.Length);
+            _audioSourceAmbient.clip = ambientSea[idx_ambient_sound];
+        }
         _audioSourceAmbient.Play();
+        
+        int idx_sound_track = Random.Range(0, soundTracks.Length);
+        _audioSourceSoundTrack.clip = soundTracks[idx_sound_track];
         _audioSourceSoundTrack.Play();
     }
 }
