@@ -44,9 +44,8 @@ public class ScoreMaster : MonoBehaviour
 
     public void ReduceLive()
     {
-        if(lives <= 1)
+        if(lives <= 1 && game_running)
         {
-            print("Ending");
             EndGame();
         }
 
@@ -68,11 +67,14 @@ public class ScoreMaster : MonoBehaviour
     {
         menu_ui.SetActive(true);
         menu_score_label.text = $"Last score: {score}";
+        score = 0;
     }
 
     public void StartGame()
     {
         playerMovement.Reset();
+        lives = 3;
+        uiController.UpdateLives(lives);
         menu_ui.SetActive(false);
         fieldAnim.SetTrigger("ascend");
     }
