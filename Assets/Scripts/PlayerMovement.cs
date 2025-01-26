@@ -1,7 +1,10 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.XR;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,9 +29,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _start_pos;
     private Quaternion _start_rot;
     private bool _hittable = true;
-    
+
+    private Transform currentPressedBoye;
+    private Dictionary<Transform, float> boyeOriginalYPositions = new Dictionary<Transform, float>();
+
     void Start()
     {
+        CacheBoyeOriginalPositions();
         // get audio components and set them accordingly
         AudioSource[] audioSources = GetComponentsInChildren<AudioSource>();
         _swimAudio = audioSources[0];
@@ -42,10 +49,19 @@ public class PlayerMovement : MonoBehaviour
         _tQuacked = Time.time;
     }
 
+    private void CacheBoyeOriginalPositions()
+    {
+        boyeOriginalYPositions[boyeTL] = boyeTL.position.y + 6;
+        boyeOriginalYPositions[boyeTR] = boyeTR.position.y + 6;
+        boyeOriginalYPositions[boyeBL] = boyeBL.position.y + 6;
+        boyeOriginalYPositions[boyeBR] = boyeBR.position.y + 6;
+    }
+
     // Update is called once per frame
     void Update()
     {
         Vector3 target_pos;
+        Transform newTarget = null;
 
         if (Input.GetButton("Quack"))
         {
@@ -60,26 +76,31 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButton("TopLeft"))
         {
             target_pos = boyeTL.position - transform.position;
+            newTarget = boyeTL;
         }
         else if (Input.GetButton("TopRight"))
         {
             target_pos = boyeTR.position - transform.position;
+            newTarget = boyeTR;
         }
         else if (Input.GetButton("BottomLeft"))
         {
             target_pos = boyeBL.position - transform.position;
+            newTarget = boyeBL;
         }
         else if (Input.GetButton("BottomRight"))
         {
             target_pos = boyeBR.position - transform.position;
+            newTarget = boyeBR;
         }
         else
         {
+            SwitchTargetBoye(null);
             animator.SetBool("IsMoving", false);
             ToggleAudio(true);
             return;
         }
-
+        SwitchTargetBoye(newTarget);
         animator.SetBool("IsMoving", true);
         ToggleAudio();
 
@@ -87,6 +108,44 @@ public class PlayerMovement : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, target_angle, 0));
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotation_speed * Time.deltaTime);
         transform.position += movement_speed * Time.deltaTime * transform.forward;
+    }
+
+    private void SwitchTargetBoye(Transform newTarget)
+    {
+        if (newTarget == currentPressedBoye)
+        {
+            return;
+        }
+
+        if (currentPressedBoye != null)
+        {
+            TweenBoyeToFloating(currentPressedBoye);
+        }
+
+        currentPressedBoye = newTarget;
+
+        if (newTarget != null)
+        {
+            TweenBoyeDown(newTarget);
+        }
+    }
+
+    private void TweenBoyeToFloating(Transform boye)
+    {
+        if (boye == null) return;
+
+        boye.DOKill();
+        float originalY = boyeOriginalYPositions[boye]; 
+        boye.DOMoveY(originalY, 0.5f).SetEase(Ease.InOutSine);
+    }
+
+    private void TweenBoyeDown(Transform boye)
+    {
+        if (boye == null) return;
+
+        boye.DOKill();
+        float targetY = boyeOriginalYPositions[boye] - 1f;
+        boye.DOMoveY(targetY, 0.3f).SetEase(Ease.OutQuad);
     }
 
     void OnTriggerEnter(Collider other)
