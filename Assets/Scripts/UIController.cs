@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private Image duck1, duck2, duck3;
     [SerializeField] private TMP_Text in_game_score;
+    [SerializeField] private GameObject credits, mainmenu;
 
 
     public void UpdateLives(int livecount)
@@ -31,5 +32,17 @@ public class UIController : MonoBehaviour
         {
             duck1.enabled = true;
         }
+    }
+
+    public void SwitchToCredits()
+    {
+        mainmenu.SetActive(false);
+        credits.SetActive(true);
+    }
+
+    public void SwitchToMenu()
+    {
+        credits.SetActive(false);
+        mainmenu.SetActive(true);
     }
 }
