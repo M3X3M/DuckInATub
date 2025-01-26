@@ -66,7 +66,7 @@ public class DropEnemy : MonoBehaviour
         Vector3 origin = transform.position;
         Vector3 direction = -transform.up;
 
-        float maxDistance = 15f;
+        float maxDistance = 25f;
 
         if (Physics.SphereCast(origin, 2f, direction, out RaycastHit hitInfo, maxDistance))
         {

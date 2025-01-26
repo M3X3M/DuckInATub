@@ -96,7 +96,7 @@ public class ScoreMaster : MonoBehaviour
     public void StartComplete()
     {
         bubbleSpawner.produce = true;
-        enemySpawner.produce = true;
+        enemySpawner.ResetSpawner();
         virtCam.Follow = player;
         ingame_ui.SetActive(true);
         game_running = true;

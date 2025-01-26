@@ -57,7 +57,7 @@ MonoBehaviour:
   menu_score_label: {fileID: 0}
   menu_ui: {fileID: 0}
   ingame_ui: {fileID: 0}
-  discharge_rate_max: 0.4
+  discharge_rate_max: 0.6
   discharge_rate_start: 1
   discharge: 50
   game_running: 0

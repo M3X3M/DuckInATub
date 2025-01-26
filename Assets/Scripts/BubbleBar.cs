@@ -58,7 +58,6 @@ public class BubbleBar : MonoBehaviour
     {
         while (true)
         {
-            print("tick");
             yield return new WaitForSeconds(0.4f);
 
             if(is_blinking)

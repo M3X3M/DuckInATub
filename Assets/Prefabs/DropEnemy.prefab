@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wait_time: 4
-  start_height: 10
+  start_height: 15
   mark: {fileID: 2982911001903695031}
   dropSound: {fileID: 8300000, guid: c4aa67ce4d1194535a99d8077ecde3e1, type: 3}
   hitSound: {fileID: 8300000, guid: a28e9e0903c92446aa73d3e5cb2b4641, type: 3}

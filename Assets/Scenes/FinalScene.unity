@@ -2499,6 +2499,10 @@ PrefabInstance:
       propertyPath: scoreMaster
       value: 
       objectReference: {fileID: 1385630006}
+    - target: {fileID: 7667424354768611971, guid: a7321d8c19b5e4244b8515802af211bd, type: 3}
+      propertyPath: m_text
+      value: Option A
+      objectReference: {fileID: 0}
     - target: {fileID: 7717183740627960288, guid: a7321d8c19b5e4244b8515802af211bd, type: 3}
       propertyPath: m_Name
       value: InGameUI
@@ -2916,6 +2920,10 @@ PrefabInstance:
     - target: {fileID: 3504753087852829096, guid: c62c38654f9db2a3b82f33fa491645a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548400294519625750, guid: c62c38654f9db2a3b82f33fa491645a3, type: 3}
+      propertyPath: dropEnemyInterval
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
