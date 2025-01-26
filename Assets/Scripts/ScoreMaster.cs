@@ -17,7 +17,7 @@ public class ScoreMaster : MonoBehaviour
     [SerializeField] private Animator fieldAnim;
     [SerializeField] private TMP_Text game_score_label, menu_score_label;
     [SerializeField] private GameObject menu_ui, ingame_ui;
-    [SerializeField] private float discharge_rate = 0.2f;
+    [SerializeField] private float discharge_rate_max, discharge_rate_start;
 
     private string score_fstring = "{0}";
     private float score = 0.0f;
@@ -25,6 +25,8 @@ public class ScoreMaster : MonoBehaviour
     private int lives = 3;
     public bool game_running = false;
     private UIController uiController;
+    private float discharge_rate;
+    private Coroutine discharge_rate_coroutine;
 
 
     // Start is called before the first frame update
@@ -46,7 +48,8 @@ public class ScoreMaster : MonoBehaviour
             return;
 
         score += new_score;
-        discharge += new_score;
+        if(discharge < 100)
+            discharge += new_score;
         UpdateLabel();
     }
 
@@ -69,6 +72,7 @@ public class ScoreMaster : MonoBehaviour
         virtCam.Follow = player_spawn;
         ingame_ui.SetActive(false);
         fieldAnim.SetTrigger("descend");
+        StopCoroutine(discharge_rate_coroutine);
     }
 
     public void EndComplete()
@@ -81,6 +85,7 @@ public class ScoreMaster : MonoBehaviour
     public void StartGame()
     {
         playerMovement.Reset();
+        discharge_rate = discharge_rate_start;
         discharge = 50;
         lives = 3;
         uiController.UpdateLives(lives);
@@ -95,6 +100,7 @@ public class ScoreMaster : MonoBehaviour
         virtCam.Follow = player;
         ingame_ui.SetActive(true);
         game_running = true;
+        discharge_rate_coroutine = StartCoroutine(DischargeRateIncreaser());
     }
 
     IEnumerator Discharger()
@@ -110,6 +116,16 @@ public class ScoreMaster : MonoBehaviour
             {
                 EndGame();
             }
+        }
+    }
+
+    IEnumerator DischargeRateIncreaser()
+    {
+        while (discharge_rate > discharge_rate_max)
+        {
+            yield return new WaitForSeconds(10);
+
+            discharge_rate -= 0.1f;
         }
     }
 }
