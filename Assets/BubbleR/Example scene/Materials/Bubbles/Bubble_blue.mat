@@ -16,7 +16,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 4000
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -25,17 +25,17 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _BounceAmplitude: 0.66
-    - _BounceFrequency: 0.58
-    - _ColorShiftMode: 0
-    - _ColorShifting: 1
-    - _Glossiness: 0.67
-    - _Metal: 0.04
+    - _BounceAmplitude: 0.34
+    - _BounceFrequency: 0.02
+    - _ColorShiftMode: 2
+    - _ColorShifting: 0
+    - _Glossiness: 0.85
+    - _Metal: 0.06
     - _Metallic: 1
     - _SpatialNoise: 0
     m_Colors:
     - _ColorShiftBand: {r: 0.34277225, g: 0.27503693, b: 0.37425387, a: 0}
-    - _ColorShiftNoise: {r: 0.22, g: 0.45, b: 1.92, a: 0}
-    - _ColorShiftPeak: {r: 0.8277851, g: 0.5155494, b: 0.18712693, a: 0}
-    - _MainColor: {r: 0, g: 0.456416, b: 1, a: 0.57254905}
+    - _ColorShiftNoise: {r: 0.21, g: 0.2, b: 0.8, a: 0}
+    - _ColorShiftPeak: {r: 0.8286139, g: 0.5155494, b: 0.18712693, a: 0}
+    - _MainColor: {r: 0.8095479, g: 0.9472386, b: 0.97735846, a: 0.4392157}
   m_BuildTextureStacks: []
