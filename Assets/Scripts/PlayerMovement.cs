@@ -153,7 +153,8 @@ public class PlayerMovement : MonoBehaviour
         if (_hittable && other.gameObject.CompareTag("Enemy"))
         {
             _hittable = false;
-            Destroy(other.gameObject);
+            if(other.gameObject.name != "Shark")
+                Destroy(other.gameObject);
             _scoreMaster.ReduceLive();
             PlayHitAudio();
             StartCoroutine(PlayerBlink());
